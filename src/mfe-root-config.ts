@@ -6,6 +6,12 @@ registerApplication({
   activeWhen: ["/users"],
 });
 
+registerApplication({
+  name: "@mfe/home-route",
+  app: () => System.import<LifeCycles>("@mfe/home-route"),
+  activeWhen: ["/home"],
+});
+
 start({
   urlRerouteOnly: true,
 });
