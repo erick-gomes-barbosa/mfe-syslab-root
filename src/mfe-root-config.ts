@@ -3,6 +3,11 @@ import { registerApplication, start, LifeCycles } from "single-spa";
 function shouldBeActive(location) {
   return !location.pathname.startsWith("/users");
 }
+registerApplication({
+  name: "@mfe/navbar-route",
+  app: () => System.import<LifeCycles>("@mfe/navbar-route"),
+  activeWhen: shouldBeActive,
+});
 
 registerApplication({
   name: "@mfe/users-route",
@@ -10,11 +15,6 @@ registerApplication({
   activeWhen: ["/users"],
 });
 
-registerApplication({
-  name: "@mfe/navbar-route",
-  app: () => System.import<LifeCycles>("@mfe/navbar-route"),
-  activeWhen: shouldBeActive,
-});
 registerApplication({
   name: "@mfe/home-route",
   app: () => System.import<LifeCycles>("@mfe/home-route"),
@@ -25,6 +25,12 @@ registerApplication({
   name: "@mfe/profile-route",
   app: () => System.import<LifeCycles>("@mfe/profile-route"),
   activeWhen: ["/profile"],
+});
+
+registerApplication({
+  name: "@mfe/admin-route",
+  app: () => System.import<LifeCycles>("@mfe/admin-route"),
+  activeWhen: ["/admin"],
 });
 
 start({
